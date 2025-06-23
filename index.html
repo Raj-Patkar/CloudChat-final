@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cloud Portal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>☁️ Cloud Portal 🚀</h1>
+
+  <div id="login-section">
+    <input id="email" placeholder="Email" />
+    <input id="password" type="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+    <button onclick="signInWithGoogle()">Sign in with Google</button>
+    <button onclick="signup()">Signup</button>
+  </div>
+
+  <div id="app-section" style="display:none;">
+    <h2 id="welcome-message"></h2>
+    <button onclick="goToChat()">🚀 Go to CloudChat</button>
+    <button onclick="goToDrive()">📁 Go to CloudDrive</button>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+
+  <script src="firebase-config.js"></script>
+  <script src="app.js"></script>
+
+  <script>
+    function goToChat() {
+      window.location.href = "chat.html";
+    }
+
+    function goToDrive() {
+      window.location.href = "public/drive.html";
+    }
+  </script>
+</body>
+</html>
