@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CloudDrive (GCP)</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <h1>📁 GCP CloudDrive 🚀</h1>
+
+  <input type="file" id="file-input" />
+  <button onclick="uploadFile()">Upload File</button>
+  <button onclick="loadFiles()">Refresh Files</button>
+
+  <h3>Your Files:</h3>
+  <div id="file-list"></div>
+
+  <script>
+    const API_BASE = "http://localhost:5000/api/files";
+
+    async function uploadFile() {
+      const fileInput = document.getElementById('file-input');
+      const file = fileInput.files[0];
+      if (!file) {
+        alert('Please select a file.');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const response = await fetch(`${API_BASE}/upload`, {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        alert('File uploaded!');
+        fileInput.value = '';
+        loadFiles();
+      } else {
+        alert('Upload failed.');
+      }
+    }
+
+    async function loadFiles() {
+      const fileList = document.getElementById('file-list');
+      fileList.innerHTML = 'Loading...';
+
+      const response = await fetch(`${API_BASE}/list`);
+      const files = await response.json();
+
+      fileList.innerHTML = '';
+
+      if (files.length === 0) {
+        fileList.innerHTML = 'No files found.';
+        return;
+      }
+
+      files.forEach(file => {
+        const div = document.createElement('div');
+        div.innerHTML = `
+          <a href="${file.url}" target="_blank">${file.name}</a>
+        `;
+        fileList.appendChild(div);
+      });
+    }
+
+    // Load on page load
+    loadFiles();
+  </script>
+</body>
+</html>
