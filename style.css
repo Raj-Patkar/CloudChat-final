@@ -205,19 +205,38 @@ button:hover {
   margin-left: auto;
 }
 
+@media (max-width: 768px) {
+    #login-section {
+        width: 370px !important;
+        height: 300px !important;
+        padding: 20px !important;
+        max-width: none !important;
+        box-sizing: border-box;
+    }
+
+        .go-back-btn {
+
+  top: -6px;
+  left: 10px;
+
+}
+}
+@media (max-width: 768px) {
 
 
+  input,
+  button {
+    font-size: 1rem;
+    padding: 10px 12px;
+  }
 
+  h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
 
-.profile {
-  display: flex;
-  align-items: center;
-  gap: 5px;
+  body {
+    padding-top: 20px;
+  }
 }
 
-.profile-pic {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  object-fit: cover;
-}

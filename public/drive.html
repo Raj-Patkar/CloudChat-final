@@ -2,14 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>CloudDrive (GCP)</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="/style.css" />
   <link rel="icon" href="data:,">
+  <style>
+    .go-back-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: #0bdb00;
+  border: none;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.go-back-btn:hover {
+  background: #b0a400;
+}
+
+/* Make sure body has relative positioning for absolute child */
+body {
+  position: relative;
+}
+
+h1{
+  margin-top: 60px;
+}
+/* Hide default file input */
+#file-input {
+  display: none;
+}
+
+/* Style the label to look like a button */
+.custom-file-upload {
+  display: block;
+  width: 90%;
+  max-width: 370px;
+  margin: 20px auto;
+  padding: 12px 20px;
+  text-align: center;
+  background-color: #00b4db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s;
+}
+
+/* Hover effect */
+.custom-file-upload:hover {
+  background-color: #0083b0;
+}
+#file-name {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: #333;
+  word-break: break-all;
+}
+
+
+  </style>
 </head>
 <body>
+  <button class="go-back-btn" onclick="goBack()">Go Back</button>
   <h1>📁 GCP CloudDrive 🚀</h1>
 
-  <input type="file" id="file-input" />
+<!-- ✅ Custom file upload button -->
+<label for="file-input" class="custom-file-upload">📁 Choose a File</label>
+<input type="file" id="file-input" style="display: none;" onchange="showFileName(); toggleSendButton();" />
+
+<!-- ✅ This span shows the file name -->
+<span id="file-name"></span>
+
   <button onclick="uploadFile()">Upload File</button>
   <button onclick="loadFiles()">Refresh Files</button>
 
@@ -69,6 +143,22 @@
 
     // Load on page load
     loadFiles();
+
+    function showFileName() {
+  const input = document.getElementById('file-input');
+  const fileNameSpan = document.getElementById('file-name');
+  if (input.files.length > 0) {
+    fileNameSpan.textContent = input.files[0].name;
+  } else {
+    fileNameSpan.textContent = '';
+  }
+}
+
   </script>
+    <script>
+  function goBack() {
+    window.location.href = '/index.html#app-section';
+  }
+</script>
 </body>
 </html>

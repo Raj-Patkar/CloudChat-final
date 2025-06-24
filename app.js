@@ -108,15 +108,13 @@ function createRoom() {
 // ✅ Send Message (Image Upload Disabled for Now)
 function sendMessage() {
   const messageInput = document.getElementById('message-input');
-  const fileInput = document.getElementById('image-input');
+  //const fileInput = document.getElementById('image-input');
   const message = messageInput.value.trim();
-  const file = fileInput.files[0];
+  //const file = fileInput.files[0];
   const user = auth.currentUser;
 
-  if (user && (message || file)) {
-    if (file) {
-      alert('Image upload is temporarily disabled.');
-    }
+  if (user && (message )) {
+
 
     db.ref(`rooms/${currentRoom}/messages`).push({
       sender: user.uid,
@@ -125,7 +123,7 @@ function sendMessage() {
     });
 
     messageInput.value = '';
-    fileInput.value = '';
+    //fileInput.value = '';
     toggleSendButton();
   }
 }
