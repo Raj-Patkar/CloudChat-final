@@ -89,14 +89,11 @@ function createRoom() {
 
   if (roomName) {
     db.ref('rooms-list/' + roomName).set(true).then(() => {
-      const roomSelect = document.getElementById('room-select');
-      const option = document.createElement('option');
-      option.value = roomName;
-      option.textContent = roomName;
-      roomSelect.appendChild(option);
+      loadRooms(); // ✅ This alone reloads ALL options properly
 
-      roomSelect.value = roomName;
-      switchRoom();
+      const roomSelect = document.getElementById('room-select');
+      roomSelect.value = roomName; // ✅ Select the new room
+      switchRoom(); // ✅ Switch to it
     });
 
     roomInput.value = '';
@@ -104,6 +101,7 @@ function createRoom() {
     alert('Please enter a valid room name.');
   }
 }
+
 
 // ✅ Send Message (Image Upload Disabled for Now)
 function sendMessage() {
@@ -198,6 +196,7 @@ auth.onAuthStateChanged((user) => {
     }
 
     if (path.includes("chat.html")) {
+      loadRooms();
       // In Chat Page
       if (document.getElementById('chat-section')) {
         document.getElementById('chat-section').style.display = 'block';
@@ -223,3 +222,38 @@ auth.onAuthStateChanged((user) => {
     }
   }
 });
+
+function loadRooms() {
+  const roomSelect = document.getElementById('room-select');
+  roomSelect.innerHTML = ''; // Clear old options
+
+  const defaults = ['general', 'sports', 'tech'];
+  defaults.forEach(room => {
+    const option = document.createElement('option');
+    option.value = room;
+    option.textContent = room;
+    roomSelect.appendChild(option);
+  });
+
+  // ✅ Firebase loads rooms-list
+  db.ref('rooms-list').once('value').then(snapshot => {
+    snapshot.forEach(childSnapshot => {
+      const roomName = childSnapshot.key;
+      if (!defaults.includes(roomName)) {
+        const option = document.createElement('option');
+        option.value = roomName;
+        option.textContent = roomName;
+        roomSelect.appendChild(option);
+      }
+    });
+
+    // ✅ Fallback to 'general' if none selected AFTER loading
+    if (!roomSelect.value) {
+      roomSelect.value = 'general';
+    }
+
+    // ✅ Switch AFTER options are ready
+    switchRoom();
+  });
+}
+
