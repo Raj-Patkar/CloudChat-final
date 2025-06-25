@@ -20,9 +20,10 @@ const upload = multer({
 
 // ✅ GCP Storage setup
 const storage = new Storage({
-  keyFilename: path.join(__dirname, 'key.json'),
+  credentials: JSON.parse(process.env.GCP_KEY_JSON),
   projectId: 'deep-wares-462607-b4',
 });
+
 const bucket = storage.bucket('clouddrive');
 
 // ✅ Upload route
