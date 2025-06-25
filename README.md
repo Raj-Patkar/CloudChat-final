@@ -7,7 +7,7 @@
 - 💬 Chat in real-time using **Firebase Realtime Database**
 - 📁 Upload and view files via a **Google Cloud Storage Bucket**
 
-This project demonstrates **multi-cloud architecture** by integrating **Firebase** (for auth and chat) with **GCP** (for file storage), hosted seamlessly using **Render**. It was an **optional challenge to mix cloud vendors**, which I took up intentionally to explore cross-platform integrations.
+This project demonstrates software as a service (SAAS) / **multi-cloud architecture** by integrating **Firebase** (for auth and chat) with **GCP** (for file storage), hosted seamlessly using **Render**. It was an **optional challenge to mix cloud vendors**, which I took up intentionally to explore cross-platform integrations.
 
 ---
 
@@ -28,7 +28,7 @@ This project demonstrates **multi-cloud architecture** by integrating **Firebase
 
 ### 1. **User Authentication**
 - The app opens with a login/register screen.
-- Handled by **Firebase Authentication** (Email/Password method).
+- Handled by **Firebase Authentication** (Email/Password method)(with google sign-in support).
 
 ### 2. **Cloud Chat**
 - After login, the user can choose **Cloud Chat**.
@@ -64,5 +64,13 @@ This project demonstrates **multi-cloud architecture** by integrating **Firebase
 | GCP             | Cloud Storage Bucket        | File upload & storage              |
 | Render          | Web Hosting                 | Hosting the full application       |
 
+## 🎯 Key Highlights
+
+- ✅ **Software as a Service (SaaS)** model – browser-based, no installation
+- ✅ **Multi-cloud architecture** using Firebase + GCP
+- ✅ Secure **user authentication**
+- ✅ Real-time chat experience
+- ✅ Reliable cloud storage and file management
+- ✅ Fully hosted and live with no local dependencies
 
 
