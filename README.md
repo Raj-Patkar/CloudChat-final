@@ -20,7 +20,7 @@ This project demonstrates software as a service (SAAS) / **multi-cloud architect
 ## 🎥 View Video Demo
 
 📽️ **Demo Video**: [Click here to watch how it works](https://drive.google.com/file/d/1URrx32JACQyLeyq9YkIsOtdQ-RgemPzM/view?usp=sharing)  
-*(Replace `#` with your actual YouTube or Drive link)*
+
 
 ---
 
